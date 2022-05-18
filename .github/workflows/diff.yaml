@@ -14,7 +14,7 @@ jobs:
       - name:
         id: diff
         run: |
-          git add -N ./diff_target
+          git add -N ./diff_target/sample.txt
           git diff --name-only --exit-code
         continue-on-error: true
       - name: echo
