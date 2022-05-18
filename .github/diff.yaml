@@ -1,0 +1,22 @@
+name: check diff sample
+
+on:
+  pull_request:
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2.4.0
+        with:
+          ref: ${{ github.head_ref }}
+      - name:
+        id: diff
+        run: |
+          git add -N ./diff_target
+          git diff --name-only --exit-code
+        continue-on-error: true
+      - name: echo
+        run: |
+          echo "test"
