@@ -14,8 +14,8 @@ jobs:
       - name: git
         id: diff
         run: |
-          git add -N ./diff_target/sample.txt
-          git diff --exit-code && echo 'test'
+          git add -N ./diff_target/
+          git diff --exit-code -- ./diff_target
         continue-on-error: true
       - name: echo
         run: |
