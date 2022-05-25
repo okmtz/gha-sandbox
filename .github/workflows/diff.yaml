@@ -20,4 +20,4 @@ jobs:
       - name: echo
         run: |
           echo "test"
-        if: env.GIT_DIFF
+        if: steps.diff.outputs.diff
