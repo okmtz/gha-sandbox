@@ -15,9 +15,9 @@ jobs:
         id: diff
         with:
           PATTERNS: |
-            diff_target
+            diff_target/*
         continue-on-error: true
       - name: echo
         run: |
           echo "test"
-        if: steps.diff.outputs.diff
+        if: env.GIT_DIFF
