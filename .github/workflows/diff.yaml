@@ -12,10 +12,11 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: git
+      - uses: technote-space/get-diff-action@v5
         id: diff
-        run: |
-          git add -N ./diff_target/
-          git diff --exit-code -- ./diff_target
+        with:
+          PATTERNS: |
+            /diff_target
         continue-on-error: true
       - name: echo
         run: |
