@@ -20,4 +20,4 @@ jobs:
       - name: echo
         run: |
           echo "test"
-        if: steps.diff.outcome == 'failure'
+        if: steps.diff.outputs.diff
