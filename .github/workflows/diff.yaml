@@ -2,22 +2,28 @@ name: check diff sample
 
 on:
   pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - closed
 
 jobs:
   commit:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
-      - name:
+      - uses: technote-space/get-diff-action@v6
         id: diff
-        run: |
-          git add -N ./diff_target/sample.txt
-          git diff --exit-code && echo 'test'
+        with:
+          PATTERNS: |
+            diff_target/*
         continue-on-error: true
       - name: echo
         run: |
           echo "test"
-        if: steps.diff.outcome == 'failure'
+        if: steps.diff.outputs.diff
